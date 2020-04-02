@@ -897,6 +897,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c28e27795def2144aa4a5de08a8d8a1, type: 3}
+--- !u!1 &1183219659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288358311363921254, guid: 4c28e27795def2144aa4a5de08a8d8a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183219658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1183219660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288358311237569392, guid: 4c28e27795def2144aa4a5de08a8d8a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183219658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1183219661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2288358313240316719, guid: 4c28e27795def2144aa4a5de08a8d8a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183219658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229159721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,9 +1071,9 @@ MonoBehaviour:
   lives: 3
   spawnpoint: {fileID: 0}
   player: {fileID: 0}
-  life1: {fileID: 0}
-  life2: {fileID: 0}
-  life3: {fileID: 0}
+  life1: {fileID: 1183219661}
+  life2: {fileID: 1183219660}
+  life3: {fileID: 1183219659}
 --- !u!4 &1410707883
 Transform:
   m_ObjectHideFlags: 0
