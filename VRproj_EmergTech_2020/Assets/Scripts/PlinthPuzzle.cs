@@ -5,7 +5,7 @@ using UnityEngine;
 /*******************************
  Name: Lyssa Tino
  Course: Emerging Technologies
- Project: Nightmare
+ Project: Wake Up
 *******************************/
 
 public class PlinthPuzzle : MonoBehaviour
@@ -13,7 +13,7 @@ public class PlinthPuzzle : MonoBehaviour
 
     public string correctItemName;
     public GameObject door;
-    public int lives = 3;
+    public GameManager gm;
 
     //get the info of the item on the plinth
     private void OnCollisionEnter(Collision collision)
@@ -26,16 +26,36 @@ public class PlinthPuzzle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(correctItemName))
         {
-            door.SetActive(false);
+            //door.SetActive(false);
+            FadeDoor();
             Debug.Log("CORRECT ANSWER");
         }
         else
         {
-            lives--;
+            gm.LoseLife();
             Debug.Log("WRONG ANSWER");
         }
 
         //make coroutine start 3s after being called
         yield return new WaitForSeconds(3f);
+    }
+
+    //fades out door
+    public void FadeDoor()
+    {
+        Color objectColor = door.GetComponent<Renderer>().material.color;
+        float fadeAmount = objectColor.a - (5 * Time.deltaTime);
+        objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+        door.GetComponent<Renderer>().material.color = objectColor;
+        StartCoroutine(TurnOffDoor());
+    }
+
+    //turns off door after fade
+    IEnumerator TurnOffDoor()
+    {
+        door.SetActive(false);
+
+        //make coroutine start 5s after being called
+        yield return new WaitForSeconds(5f);
     }
 }

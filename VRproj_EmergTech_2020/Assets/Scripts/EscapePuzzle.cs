@@ -1,13 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+/*******************************
+ Name: Lyssa Tino
+ Course: Emerging Technologies
+ Project: Wake Up
+*******************************/
 
 public class EscapePuzzle : MonoBehaviour
 {
     public bool started = false;
     public float timeLeft = 60.0f;
     public int timeToDisplay = 0;
-    public int lives = 3;
+    public GameManager gm;
+
+    //UI references
+    public Text timeText;
 
     void Update()
     {
@@ -18,12 +28,14 @@ public class EscapePuzzle : MonoBehaviour
 
             //typecast and round for timer display
             timeToDisplay = (int)Mathf.Round(timeLeft);
-            Debug.Log(timeToDisplay);
+
+            //display new time on HUD
+            timeText.text = timeToDisplay.ToString();
 
             //lose a life if time runs out
             if (timeLeft < 0)
             {
-                lives--;
+                gm.LoseLife();
             }
         }
     }
