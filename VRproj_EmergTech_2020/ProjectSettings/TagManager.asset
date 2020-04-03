@@ -6,6 +6,9 @@ TagManager:
   tags:
   - projectile
   - FxTemporaire
+  - Weapon
+  - Enemy
+  - Enemy_Sword
   layers:
   - Default
   - TransparentFX
