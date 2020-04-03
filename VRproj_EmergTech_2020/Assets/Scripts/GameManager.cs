@@ -39,17 +39,7 @@ public class GameManager : MonoBehaviour
                 ZeroLives();
                 break;
         }
-
-        //CheckLives();
     }
-
-    //public void CheckLives()
-    //{
-    //    if (lives == 0)
-    //    {
-    //        ZeroLives();
-    //    }
-    //}
 
     public void ZeroLives()
     {
@@ -61,5 +51,15 @@ public class GameManager : MonoBehaviour
         life1.SetActive(true);
         life2.SetActive(true);
         life3.SetActive(true);
+    }
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void UnpauseTime()
+    {
+        Time.timeScale = 1;
     }
 }
