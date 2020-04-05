@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 /*******************************
  Name: Lyssa Tino
@@ -12,18 +14,22 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public int lives = 3;
-    public Transform spawnpoint;
     public GameObject player;
 
     //UI references
     public GameObject life1;
     public GameObject life2;
     public GameObject life3;
-
+    public GameObject timer;
+    public TextMeshProUGUI timerText;
+    public GameObject loseLifePanel;
+    public GameObject gameOverPanel;
 
     public void LoseLife()
     {
         lives--;
+        loseLifePanel.SetActive(true);
+        StartCoroutine(TurnOffPanel(loseLifePanel));
 
         //turns UI hearts on and off
         switch (lives)
@@ -44,8 +50,10 @@ public class GameManager : MonoBehaviour
     public void ZeroLives()
     {
         //restart from beginning
-        player.transform.position = spawnpoint.position;
         lives = 3;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverPanel.SetActive(true);
+        StartCoroutine(TurnOffPanel(gameOverPanel));
 
         //turn on UI hearts
         life1.SetActive(true);
@@ -61,5 +69,11 @@ public class GameManager : MonoBehaviour
     public void UnpauseTime()
     {
         Time.timeScale = 1;
+    }
+
+    public IEnumerator TurnOffPanel(GameObject myObject)
+    {
+        myObject.SetActive(false);
+        yield return new WaitForSeconds(4);
     }
 }

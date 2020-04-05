@@ -12,25 +12,24 @@ using UnityEngine.UI;
 public class EscapePuzzle : MonoBehaviour
 {
     public bool started = false;
-    public float timeLeft = 60.0f;
+    public float totalTime;
+    public float timeLeft;
     public int timeToDisplay = 0;
     public GameManager gm;
-
-    //UI references
-    public Text timeText;
 
     void Update()
     {
         //start counting down if the puzzle has started
         if (started)
         {
+            timeLeft = totalTime;
             timeLeft -= Time.deltaTime;
 
             //typecast and round for timer display
             timeToDisplay = (int)Mathf.Round(timeLeft);
 
             //display new time on HUD
-            timeText.text = timeToDisplay.ToString();
+            gm.timerText.text = timeToDisplay.ToString();
 
             //lose a life if time runs out
             if (timeLeft < 0)
@@ -45,7 +44,19 @@ public class EscapePuzzle : MonoBehaviour
         //start the puzzle when player enters the zone
         if (other.gameObject.CompareTag("Player"))
         {
+            gm.timer.SetActive(true);
             started = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //stop the puzzle when player exits the zone
+        if (other.gameObject.CompareTag("Player"))
+        {
+            started = false;
+            gm.timer.SetActive(false);
+            timeLeft = totalTime;
         }
     }
 }
