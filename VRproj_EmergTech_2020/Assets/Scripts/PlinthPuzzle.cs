@@ -28,6 +28,7 @@ public class PlinthPuzzle : MonoBehaviour
         {
             //door.SetActive(false);
             FadeDoor();
+            gm.PassLevel();
             Debug.Log("CORRECT ANSWER");
         }
         else

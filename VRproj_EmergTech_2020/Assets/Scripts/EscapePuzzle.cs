@@ -16,6 +16,7 @@ public class EscapePuzzle : MonoBehaviour
     public float timeLeft;
     public int timeToDisplay = 0;
     public GameManager gm;
+    public float boundsCheck;
 
     void Update()
     {
@@ -57,6 +58,11 @@ public class EscapePuzzle : MonoBehaviour
             started = false;
             gm.timer.SetActive(false);
             timeLeft = totalTime;
+
+            if(gm.player.transform.position.x >= boundsCheck)
+            {
+                gm.PassLevel();
+            }
         }
     }
 }

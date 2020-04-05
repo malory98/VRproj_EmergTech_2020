@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 {
     public int lives = 3;
     public GameObject player;
+    public int totalLevels;
+    public int levelsPassed = 0;
 
     //UI references
     public GameObject life1;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public GameObject loseLifePanel;
     public GameObject gameOverPanel;
+    public GameObject winGamePanel;
 
     public void LoseLife()
     {
@@ -75,5 +78,20 @@ public class GameManager : MonoBehaviour
     {
         myObject.SetActive(false);
         yield return new WaitForSeconds(4);
+    }
+
+    public void WinGame()
+    {
+        winGamePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void PassLevel()
+    {
+        levelsPassed++;
+        if(levelsPassed == totalLevels)
+        {
+            WinGame();
+        }
     }
 }
