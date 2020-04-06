@@ -9,26 +9,40 @@ public class Enemy : MonoBehaviour
         Begin = 0,
         Chase = 1,
         Attack = 2,
-        Exposed = 3
+        Exposed = 3,
+        Dead = 4
     };
 
+    #region Variables
     public State state;
 
-    public Vector3 playerPos;
-    public Vector3 thisPos;
+    public GameManager GM;
+
+    public Vector3 direction;
+
+    public Rigidbody rb;
+
+    public GameObject enemy;
+    public GameObject player;
 
     public int postureHP;
     public int maxPostureHP;
-    public int health;
+    public float health;
+    public float maxHP;
+
+    public float currentDist;
+    public float agroRange;
+    public float attackRange;
+
     public float attackSpeed;
     public float recoverySpeed;
-
+    public float enemySpeed;
 
     public Animator animator;
 
     public bool isAttacking;
     public bool isExposed;
-
+    #endregion
 
     // Fires an attack animation trigger then waits
     public IEnumerator StartAttack()
@@ -49,11 +63,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDMG()
+    // Method to reduce enemy's posture HP and trigger parry animation
+    public void TakePostureDMG()
     {
         animator.SetTrigger("Parried");
         postureHP--;
         Debug.Log(postureHP);
+    }
+
+    void OnCollisionEnter (Collision collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            if (state == State.Exposed)
+            {
+                health--;
+            }
+
+            else
+            {
+                health = health - (1 * 0.5f);
+            }
+            
+        }
     }
 
     // Start is called before the first frame update
@@ -63,21 +95,58 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate () 
     {
+ 
         switch (state)
         {
+            #region Begin State
             // Begin State -> Checks if the player is within the start combat zone
             case State.Begin:
-                state = State.Chase;
-                break;
 
+                currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
+                Debug.Log(currentDist);
+               
+                if (currentDist < agroRange)
+                {
+                    state = State.Chase;
+                }
+
+                break;
+            #endregion
+
+            #region Chase State
             // Chase State -> Moves enemy in combat range of player
             case State.Chase:
-                state = State.Attack;
-                break;
 
+                // Obtains the direction vector of the enemy to player and the current distance between them
+                currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
+                Debug.Log(currentDist);
+                direction = (player.transform.position - enemy.transform.position);
+
+                // Moves the position of the enemy towards the player
+                rb.MovePosition(transform.position + (direction * enemySpeed * Time.fixedDeltaTime));
+
+                animator.SetBool("IsMoving", true);
+                
+                // Checks if the cuirrent distance is within attack range
+                if (currentDist < attackRange)
+                {
+                    animator.SetBool("IsMoving", false);
+                    state = State.Attack;
+                }
+
+
+                // Sets State to dead when enemy hp hits zero
+                if (health < 1)
+                {
+                    state = State.Dead;
+                }
+
+                break;
+            #endregion
+
+            #region Attack State
             // Attack State -> Fires attack triggers every set amount of seconds
             case State.Attack:
                 // Triggers the attack coroutine
@@ -86,6 +155,7 @@ public class Enemy : MonoBehaviour
                     StartCoroutine("StartAttack");
                     isAttacking = true;
                 }
+                
                 // Sets the State to exposed when the player breaks the posture meter
                 if (postureHP < 1)
                 {
@@ -93,8 +163,18 @@ public class Enemy : MonoBehaviour
                     isAttacking = true;
                     animator.SetBool("Exposed", true);
                 }
+
+                // Sets State to dead when enemy hp hits zero
+                if (health < 1)
+                {
+                    state = State.Dead;
+                }
+                
                 break;
 
+            #endregion
+
+            #region Exposed State
             // Exposed State -> Leaves the enemy open to attacks for a set period of time
             case State.Exposed:
                 // Ensures that the enemy's posture HP starts regenerating from 0
@@ -102,19 +182,35 @@ public class Enemy : MonoBehaviour
                 {
                     postureHP = 0;
                 }
+               
                 if (!isExposed)
                 {
                     StartCoroutine("ExposedTimer");
                     isExposed = true;
                 }
+
                 if (postureHP == maxPostureHP)
                 {
                     state = State.Attack;
                     isExposed = false;
-                    animator.SetBool("Exposed", false) ;
+                    animator.SetBool("Exposed", false);
                 }
+
+                // Sets State to dead when enemy hp hits zero
+                if (health < 1)
+                {
+                    state = State.Dead;
+                }
+
+                break;
+            #endregion
+
+            case State.Dead:
+                
                 break;
 
         }
+
     }
+
 }

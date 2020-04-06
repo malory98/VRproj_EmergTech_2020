@@ -17,7 +17,7 @@ public class EnemyWeapon : MonoBehaviour
     {
         if (other.gameObject.tag == "Weapon" && enemyScript.state == Enemy.State.Attack)
         {
-            enemyScript.TakeDMG();
+            enemyScript.TakePostureDMG();
         }
     }
 }
