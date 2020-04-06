@@ -7,19 +7,19 @@ public class VolumeControl : MonoBehaviour
 {
     public AudioMixer masterMixer;
 
-    public void SetMasterLv(float masterLvl)
+    public void SetMasterLv(float volMaster)
     {
-        masterMixer.SetFloat("masterVol", masterLvl);
+        masterMixer.SetFloat("volMaster", volMaster);
     }
 
-    public void SetSfxLv(float sfxLvl)
+    public void SetSfxLv(float volSFXs)
     {
-        masterMixer.SetFloat("sfxVol", sfxLvl);
+        masterMixer.SetFloat("volSFXs", volSFXs);
     }
 
-    public void SetMusicLv(float musicLvl)
+    public void SetAmbienceLv(float volAmbience)
     {
-        masterMixer.SetFloat("musicVol", musicLvl);
+        masterMixer.SetFloat("volAmbience", volAmbience);
     }
 
 }
