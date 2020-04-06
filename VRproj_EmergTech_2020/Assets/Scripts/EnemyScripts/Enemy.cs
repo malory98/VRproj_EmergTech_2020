@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -42,6 +43,9 @@ public class Enemy : MonoBehaviour
 
     public bool isAttacking;
     public bool isExposed;
+
+    public Slider healthSlider;
+    public Slider postureSlider;
     #endregion
 
     // Fires an attack animation trigger then waits
@@ -58,6 +62,7 @@ public class Enemy : MonoBehaviour
         if (postureHP != maxPostureHP && state == State.Exposed)
         {
             postureHP++;
+            postureSlider.value = postureHP;
             yield return new WaitForSeconds(recoverySpeed);
             StartCoroutine("ExposedTimer");
         }
@@ -68,6 +73,7 @@ public class Enemy : MonoBehaviour
     {
         animator.SetTrigger("Parried");
         postureHP--;
+        postureSlider.value = postureHP;
         Debug.Log(postureHP);
     }
 
@@ -78,6 +84,7 @@ public class Enemy : MonoBehaviour
             if (state == State.Exposed)
             {
                 health--;
+                healthSlider.value = health;
             }
 
             else
@@ -93,6 +100,11 @@ public class Enemy : MonoBehaviour
     {
         state = State.Begin;
         isAttacking = false;
+        healthSlider.maxValue = health;
+        healthSlider.value = health;
+
+        postureSlider.maxValue = postureHP;
+        postureSlider.value = postureHP;
     }
 
     void FixedUpdate () 
