@@ -6083,6 +6083,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1035505176}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1035505185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6694610703933901531, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1035505176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1035505207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6344,10 +6350,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   started: 0
-  totalTime: 0
-  timeLeft: 60
+  totalTime: 60
+  timeLeft: 0
   timeToDisplay: 0
   gm: {fileID: 1410707882}
+  boundsCheck: -30
 --- !u!1001 &1164130158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7833,7 +7840,7 @@ MonoBehaviour:
   timerText: {fileID: 1035505181}
   loseLifePanel: {fileID: 1035505184}
   gameOverPanel: {fileID: 1035505183}
-  winGamePanel: {fileID: 0}
+  winGamePanel: {fileID: 1035505185}
 --- !u!4 &1410707883
 Transform:
   m_ObjectHideFlags: 0
@@ -8098,8 +8105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553254540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.34, y: 0.1, z: -0.04}
-  m_LocalScale: {x: 2.205, y: 1.5, z: 2.1812701}
+  m_LocalPosition: {x: -29.503, y: 0.1, z: -0.04}
+  m_LocalScale: {x: 2.6371799, y: 1.5, z: 2.1812701}
   m_Children: []
   m_Father: {fileID: 1562791202}
   m_RootOrder: 1
