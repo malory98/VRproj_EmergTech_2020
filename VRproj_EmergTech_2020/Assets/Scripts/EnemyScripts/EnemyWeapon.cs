@@ -20,6 +20,7 @@ public class EnemyWeapon : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerScript.health--;
+            playerScript.healthSlider.value = playerScript.health;
         }
     }
 
