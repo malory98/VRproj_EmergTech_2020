@@ -31,7 +31,7 @@ public class PlinthPuzzle : MonoBehaviour
             gm.PassLevel();
             Debug.Log("CORRECT ANSWER");
         }
-        else
+        else if (collision.gameObject.CompareTag("Incorrect"))
         {
             gm.LoseLife();
             Debug.Log("WRONG ANSWER");
