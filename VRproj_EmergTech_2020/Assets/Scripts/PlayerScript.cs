@@ -5,7 +5,15 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public int health;
+    public int maxHP;
     public GameManager GM;
+
+    public IEnumerator LifeLost()
+    {
+        GM.LoseLife();
+        health = maxHP;
+        yield return new WaitForSeconds(4);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (health < 1)
         {
-            GM.LoseLife();
+            StartCoroutine("LifeLost");
         }
     }
 }
