@@ -90,6 +90,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 health = health - (1 * 0.5f);
+                healthSlider.value = health;
             }
             
         }
@@ -124,7 +125,13 @@ public class Enemy : MonoBehaviour
                 {
                     state = State.Chase;
                 }
-
+                
+                // Sets State to dead when enemy hp hits zero
+                if (health < 1)
+                {
+                    state = State.Dead;
+                    Debug.Log("Enemy died in " + state + "State");
+                }
                 break;
             #endregion
 
