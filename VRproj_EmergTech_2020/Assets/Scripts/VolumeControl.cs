@@ -5,21 +5,24 @@ using UnityEngine.Audio;
 
 public class VolumeControl : MonoBehaviour
 {
+    // (PT-BR) TEM QUE ESCREVER OS NOMES DAS VARIAVEIS DOS PARAMETROS EXPOSTOS EXAMATEMENTE COMO ELAS SE CHAMAM
+    // (EN) YOU HAVE TO WRITE THE EXPOSED-PARAMETERS VARIABLES' NAMES EXACTLY AS THEY ARE CALLED
+
     public AudioMixer masterMixer;
 
-    public void SetMasterLv(float masterLvl)
+    public void SetMasterLv(float volMaster)
     {
-        masterMixer.SetFloat("masterVol", masterLvl);
+        masterMixer.SetFloat("volMaster", volMaster);
     }
 
-    public void SetSfxLv(float sfxLvl)
+    public void SetSfxLv(float volSFXs)
     {
-        masterMixer.SetFloat("sfxVol", sfxLvl);
+        masterMixer.SetFloat("volSFXs", volSFXs);
     }
 
-    public void SetMusicLv(float musicLvl)
+    public void SetMusicLv(float volAmbience)
     {
-        masterMixer.SetFloat("musicVol", musicLvl);
+        masterMixer.SetFloat("volAmbience", volAmbience);
     }
 
 }
