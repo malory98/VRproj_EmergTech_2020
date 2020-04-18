@@ -13,8 +13,13 @@ public class SceneChange : MonoBehaviour
 {
     public string sceneName;
 
-    public void ChangeScene()
+    public void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene(sceneName);
+        if (collision.gameObject.CompareTag("StartGame"))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        
     }
+
 }

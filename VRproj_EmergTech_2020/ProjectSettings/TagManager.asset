@@ -12,6 +12,7 @@ TagManager:
   - Sphere
   - Feather
   - Incorrect
+  - StartGame
   layers:
   - Default
   - TransparentFX
