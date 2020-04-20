@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 1000010402951368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.9915, y: 2.9915, z: 2.9915}
   m_Children:
   - {fileID: 4000011082351298}
   - {fileID: 4000011754402048}
@@ -419,7 +419,7 @@ MonoBehaviour:
   maxHP: 20
   currentDist: 0
   agroRange: 6
-  attackRange: 1.5
+  attackRange: 2.65
   attackSpeed: 0.25
   recoverySpeed: 0.5
   enemySpeed: 1

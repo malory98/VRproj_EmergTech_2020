@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR.InteractionSystem;
 
 public class Enemy : MonoBehaviour
 {
@@ -24,10 +25,14 @@ public class Enemy : MonoBehaviour
     public Rigidbody rb;
 
     public GameObject enemy;
+    public GameObject playerWeapon;
+    public VelocityEstimator velocityEstimator;
     public GameObject player;
 
     public int postureHP;
     public int maxPostureHP;
+
+    public float playerWeaponSpeed;
     public float health;
     public float maxHP;
 
@@ -79,8 +84,13 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter (Collision collision)
     {
-        if (collision.gameObject.tag == "Weapon")
+        velocityEstimator = playerWeapon.GetComponent<VelocityEstimator>();
+        playerWeaponSpeed = velocityEstimator.GetVelocityEstimate().magnitude;
+        Debug.Log(playerWeaponSpeed);
+
+        if (collision.gameObject.tag == "Weapon" && playerWeaponSpeed > 3)
         {
+
             if (state == State.Exposed)
             {
                 health--;
@@ -110,7 +120,6 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate () 
     {
- 
         switch (state)
         {
             #region Begin State
@@ -119,7 +128,7 @@ public class Enemy : MonoBehaviour
 
                 // Obtains the direction vector of the enemy to player and the current distance between them
                 currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
-                Debug.Log(currentDist);
+                //Debug.Log(currentDist);
 
                 if (currentDist < agroRange)
                 {
@@ -141,7 +150,7 @@ public class Enemy : MonoBehaviour
 
                 // Obtains the direction vector of the enemy to player and the current distance between them
                 currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
-                Debug.Log(currentDist);
+                //Debug.Log(currentDist);
                 direction = (player.transform.position - enemy.transform.position);
 
                 // Moves the position of the enemy towards the player
@@ -174,7 +183,7 @@ public class Enemy : MonoBehaviour
                 
                 // Obtains the direction vector of the enemy to player and the current distance between them
                 currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
-                Debug.Log(currentDist);
+                //Debug.Log(currentDist);
 
                 if (currentDist < attackRange)
                 {

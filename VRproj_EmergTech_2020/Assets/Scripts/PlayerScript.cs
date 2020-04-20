@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
     public int health;
     public int maxHP;
     public GameManager GM;
-    
     public Slider healthSlider;
 
     public IEnumerator LifeLost()
