@@ -76,8 +76,7 @@ public class PlinthPuzzle : MonoBehaviour
     //Play Puzzle Fail SFX
     IEnumerator PuzzleFail()
     {
-        //make coroutine start 5s after being called
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
 
         puzzleFailAS.Play();
     }

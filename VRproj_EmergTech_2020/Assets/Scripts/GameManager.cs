@@ -27,10 +27,14 @@ public class GameManager : MonoBehaviour
     public GameObject loseLifePanel;
     public GameObject gameOverPanel;
     public GameObject winGamePanel;
+    public GameObject pausePanel;
+    public GameObject canvasMenus;
 
     public void LoseLife()
     {
         lives--;
+        canvasMenus.SetActive(true);
+        pausePanel.SetActive(false);
         loseLifePanel.SetActive(true);
         StartCoroutine(TurnOffPanel(loseLifePanel));
 
@@ -45,17 +49,24 @@ public class GameManager : MonoBehaviour
                 break;
             case 0:
                 life1.SetActive(false);
-                ZeroLives();
+                //ZeroLives();
+                GameOver();
                 break;
         }
     }
 
-    public void ZeroLives()
+    public void GameOver()
+    {
+        canvasMenus.SetActive(true);
+        pausePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+    }
+
+    public void ZeroLives()  // Restart Level
     {
         //restart from beginning
         lives = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameOverPanel.SetActive(true);
         StartCoroutine(TurnOffPanel(gameOverPanel));
 
         //turn on UI hearts
@@ -82,6 +93,8 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        canvasMenus.SetActive(true);
+        pausePanel.SetActive(false);
         winGamePanel.SetActive(true);
         Time.timeScale = 0;
     }
