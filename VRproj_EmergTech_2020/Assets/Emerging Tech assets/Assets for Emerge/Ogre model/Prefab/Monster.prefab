@@ -425,9 +425,9 @@ MonoBehaviour:
   maxHP: 20
   currentDist: 0
   agroRange: 7
-  attackRange: 2.3
+  attackRange: 3
   attackSpeed: 0.25
-  recoverySpeed: 1
+  recoverySpeed: 0.25
   enemySpeed: 0.65
   animator: {fileID: 95000013290184230}
   isAttacking: 0

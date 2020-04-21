@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         playerWeaponSpeed = velocityEstimator.GetVelocityEstimate().magnitude;
         Debug.Log(playerWeaponSpeed);
 
-        if (collision.gameObject.tag == "Weapon" && playerWeaponSpeed > 3)
+        if (collision.gameObject.tag == "Weapon" && playerWeaponSpeed > 2)
         {
 
             if (state == State.Exposed)

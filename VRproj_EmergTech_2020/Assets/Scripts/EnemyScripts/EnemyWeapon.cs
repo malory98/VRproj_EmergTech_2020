@@ -34,7 +34,7 @@ public class EnemyWeapon : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
-        if (other.gameObject.tag == "Weapon" && enemyScript.state == Enemy.State.Attack && playerWeaponSpeed > 3)
+        if (other.gameObject.tag == "Weapon" && enemyScript.state == Enemy.State.Attack && playerWeaponSpeed > 2)
         {
             enemyScript.TakePostureDMG();
         }
