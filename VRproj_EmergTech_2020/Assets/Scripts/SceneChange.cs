@@ -13,11 +13,17 @@ public class SceneChange : MonoBehaviour
 {
     public string sceneName;
 
+    public AudioSource fail;
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("StartGame"))
         {
             SceneManager.LoadScene(sceneName);
+        }
+        else if (collision.gameObject.CompareTag("Incorrect"))
+        {
+            fail.Play();
         }
         
     }
