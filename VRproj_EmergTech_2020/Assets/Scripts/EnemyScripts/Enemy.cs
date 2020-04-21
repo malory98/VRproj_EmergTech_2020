@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR.InteractionSystem;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
     };
 
     #region Variables
+    NavMeshAgent _navMeshAgent; 
+    
     public State state;
 
     public GameManager GM;
@@ -116,6 +119,7 @@ public class Enemy : MonoBehaviour
 
         postureSlider.maxValue = postureHP;
         postureSlider.value = postureHP;
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
     }
 
     void FixedUpdate () 
@@ -150,11 +154,15 @@ public class Enemy : MonoBehaviour
 
                 // Obtains the direction vector of the enemy to player and the current distance between them
                 currentDist = Vector3.Magnitude(enemy.transform.position - player.transform.position);
+                
                 //Debug.Log(currentDist);
                 direction = (player.transform.position - enemy.transform.position);
 
                 // Moves the position of the enemy towards the player
-                rb.MovePosition(transform.position + (direction * enemySpeed * Time.fixedDeltaTime));
+                //rb.MovePosition(transform.position + (direction * enemySpeed * Time.fixedDeltaTime));
+
+                _navMeshAgent.SetDestination(player.transform.position);
+
                 transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
 
                 animator.SetBool("IsMoving", true);
