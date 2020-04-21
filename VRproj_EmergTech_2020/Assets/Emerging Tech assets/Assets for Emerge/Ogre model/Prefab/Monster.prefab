@@ -293,6 +293,9 @@ MonoBehaviour:
   enemy: {fileID: 1000010402951368}
   enemyScript: {fileID: 722938483}
   playerScript: {fileID: 0}
+  playerWeapon: {fileID: 0}
+  velocityEstimator: {fileID: 0}
+  playerWeaponSpeed: 0
 --- !u!135 &369747619
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -412,17 +415,20 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   rb: {fileID: 722938485}
   enemy: {fileID: 1000010402951368}
+  playerWeapon: {fileID: 0}
+  velocityEstimator: {fileID: 0}
   player: {fileID: 0}
   postureHP: 10
   maxPostureHP: 10
+  playerWeaponSpeed: 0
   health: 20
   maxHP: 20
   currentDist: 0
-  agroRange: 6
-  attackRange: 2.65
+  agroRange: 7
+  attackRange: 2.3
   attackSpeed: 0.25
-  recoverySpeed: 0.5
-  enemySpeed: 1
+  recoverySpeed: 1
+  enemySpeed: 0.65
   animator: {fileID: 95000013290184230}
   isAttacking: 0
   isExposed: 0
@@ -2064,6 +2070,9 @@ MonoBehaviour:
   enemy: {fileID: 1000010402951368}
   enemyScript: {fileID: 722938483}
   playerScript: {fileID: 0}
+  playerWeapon: {fileID: 0}
+  velocityEstimator: {fileID: 0}
+  playerWeaponSpeed: 0
 --- !u!135 &63872796
 SphereCollider:
   m_ObjectHideFlags: 0
