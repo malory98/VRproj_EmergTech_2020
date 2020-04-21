@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vrproj_emergtech_2020.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\Github Projects\\Group\\VRproj_EmergTech_2020\\VRproj_EmergTech_2020\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "VRproj_EmergTech_2020 [Testing]"
+        }
+      }
+    }
+  ]
+}
