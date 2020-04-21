@@ -3248,6 +3248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: BetaScene
+  fail: {fileID: 0}
 --- !u!1001 &392098597
 PrefabInstance:
   m_ObjectHideFlags: 0
