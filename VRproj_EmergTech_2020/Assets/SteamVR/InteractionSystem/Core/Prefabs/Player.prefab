@@ -282,7 +282,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107946}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4685bbde1c1ed7342bf10354eea60d8f, type: 3}
   m_Name: 
@@ -2792,7 +2792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: BetaScene
   playerHUD: {fileID: 0}
-  testing: {fileID: 0}
+  testingHUD: {fileID: 0}
   fail: {fileID: 0}
 --- !u!1001 &392098597
 PrefabInstance:
@@ -3300,6 +3300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.97455
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288358311805619304, guid: 4c28e27795def2144aa4a5de08a8d8a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4383097133101299468, guid: 4c28e27795def2144aa4a5de08a8d8a1,
         type: 3}

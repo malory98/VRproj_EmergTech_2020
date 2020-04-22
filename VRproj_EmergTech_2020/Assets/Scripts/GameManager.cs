@@ -13,6 +13,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    static GameManager instance;
+
     public int lives = 3;
     public GameObject player;
     public int totalLevels;
@@ -29,6 +31,20 @@ public class GameManager : MonoBehaviour
     public GameObject winGamePanel;
     public GameObject pausePanel;
     public GameObject canvasMenus;
+
+    public void Start()
+    {
+        //sets to singleton
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
 
     public void LoseLife()
     {
