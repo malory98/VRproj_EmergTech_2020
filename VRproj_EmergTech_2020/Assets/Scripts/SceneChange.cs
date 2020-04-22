@@ -13,6 +13,9 @@ public class SceneChange : MonoBehaviour
 {
     public string sceneName;
 
+    public GameObject playerHUD;
+    public GameObject testingHUD;
+
     public AudioSource fail;
 
     public void OnCollisionEnter(Collision collision)
@@ -20,6 +23,8 @@ public class SceneChange : MonoBehaviour
         if (collision.gameObject.CompareTag("StartGame"))
         {
             SceneManager.LoadScene(sceneName);
+            playerHUD.SetActive(true);
+            testingHUD.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("Incorrect"))
         {
