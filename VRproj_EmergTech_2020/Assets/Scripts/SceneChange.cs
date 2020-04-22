@@ -22,6 +22,7 @@ public class SceneChange : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("StartGame"))
         {
+            Destroy(collision.gameObject);
             SceneManager.LoadScene(sceneName);
             playerHUD.SetActive(true);
             testingHUD.SetActive(true);
