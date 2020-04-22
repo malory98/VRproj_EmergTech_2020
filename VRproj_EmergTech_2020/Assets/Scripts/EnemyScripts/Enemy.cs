@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
         healthSlider.maxValue = health;
         healthSlider.value = health;
-
+        player = GameObject.Find("Player");
         postureSlider.maxValue = postureHP;
         postureSlider.value = postureHP;
         _navMeshAgent = this.GetComponent<NavMeshAgent>();

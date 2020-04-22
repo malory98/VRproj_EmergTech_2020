@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
+    static PlayerScript instance;
+
     public int health;
     public int maxHP;
     public GameManager GM;
@@ -20,6 +22,17 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //sets to singleton
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+
         healthSlider.maxValue = maxHP;
         healthSlider.value = health;
     }
